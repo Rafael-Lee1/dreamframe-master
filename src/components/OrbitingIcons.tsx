@@ -2,6 +2,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
+// Simple clean icons for the orbit
 const icons = [
   "/icons/icon1.svg",
   "/icons/icon2.svg", 
@@ -12,7 +13,7 @@ const icons = [
 
 // Fallback icons in case the SVGs aren't available
 const fallbackIcons = [
-  "🌕", "🔵", "⚫", "⚪", "✨"
+  "○", "●", "◆", "□", "★"
 ];
 
 interface OrbitingIconProps {
@@ -34,9 +35,9 @@ const OrbitingIcons: React.FC<OrbitingIconProps> = ({ radius = 150 }) => {
     img.src = icons[0];
     img.onerror = () => setUseEmojis(true);
 
-    // Orbit animation
+    // Orbit animation with very slow, subtle movement
     const interval = setInterval(() => {
-      setAngle((prev) => prev + 0.005);
+      setAngle((prev) => prev + 0.002);
     }, 16);
     
     return () => {
@@ -47,21 +48,46 @@ const OrbitingIcons: React.FC<OrbitingIconProps> = ({ radius = 150 }) => {
   return (
     <div className="absolute inset-0 pointer-events-none">
       <div ref={orbitRef} className="relative w-full h-full max-w-screen-lg mx-auto">
+        {/* Connection lines (very subtle) */}
+        <svg className="absolute inset-0 w-full h-full opacity-[0.03]">
+          {(useEmojis ? fallbackIcons : icons).map((_, index) => {
+            const nextIndex = (index + 1) % icons.length;
+            const theta1 = angle + (index * (2 * Math.PI / icons.length));
+            const theta2 = angle + (nextIndex * (2 * Math.PI / icons.length));
+            const x1 = adjustedRadius * Math.cos(theta1);
+            const y1 = adjustedRadius * Math.sin(theta1) * 0.3;
+            const x2 = adjustedRadius * Math.cos(theta2);
+            const y2 = adjustedRadius * Math.sin(theta2) * 0.3;
+            
+            return (
+              <line
+                key={`line-${index}`}
+                x1={`calc(50% + ${x1}px)`}
+                y1={`calc(50% + ${y1}px)`}
+                x2={`calc(50% + ${x2}px)`}
+                y2={`calc(50% + ${y2}px)`}
+                stroke="#000"
+                strokeWidth="0.5"
+                className="connection-line"
+              />
+            );
+          })}
+        </svg>
+
         {/* Orbiting elements */}
         {(useEmojis ? fallbackIcons : icons).map((icon, index) => {
           const theta = angle + (index * (2 * Math.PI / icons.length));
-          // Use a simple horizontal line as orbit for the main showcase
+          // Use a slightly elliptical orbit
           const x = adjustedRadius * Math.cos(theta);
-          const y = 0; // Keep y at 0 to make a horizontal line
+          const y = adjustedRadius * Math.sin(theta) * 0.3; // Flatten the circle to make it more elliptical
           
           return useEmojis ? (
             <div
               key={`icon-${index}`}
-              className="absolute text-3xl transform -translate-x-1/2 -translate-y-1/2"
+              className="absolute text-xl transform -translate-x-1/2 -translate-y-1/2 opacity-60 transition-all duration-300"
               style={{ 
                 left: `calc(50% + ${x}px)`, 
                 top: `calc(50% + ${y}px)`,
-                opacity: 0.8
               }}
             >
               {icon}
@@ -69,7 +95,7 @@ const OrbitingIcons: React.FC<OrbitingIconProps> = ({ radius = 150 }) => {
           ) : (
             <div
               key={`icon-${index}`}
-              className="absolute transform -translate-x-1/2 -translate-y-1/2"
+              className="absolute transform -translate-x-1/2 -translate-y-1/2 transition-all duration-300"
               style={{ 
                 left: `calc(50% + ${x}px)`, 
                 top: `calc(50% + ${y}px)`,
@@ -78,11 +104,9 @@ const OrbitingIcons: React.FC<OrbitingIconProps> = ({ radius = 150 }) => {
               <img
                 src={icon}
                 alt={`Element ${index + 1}`}
-                className="w-6 h-6 transform"
+                className="w-5 h-5 transform opacity-60"
                 style={{
-                  filter: index === 1 ? 'brightness(0) invert(42%) sepia(93%) saturate(1352%) hue-rotate(230deg) brightness(119%) contrast(119%)' : 
-                          (index === 0 ? 'brightness(0) invert(80%) sepia(42%) saturate(397%) hue-rotate(356deg) brightness(103%) contrast(101%)' : 
-                          'brightness(0)')
+                  filter: 'brightness(0) opacity(0.6)'
                 }}
               />
             </div>

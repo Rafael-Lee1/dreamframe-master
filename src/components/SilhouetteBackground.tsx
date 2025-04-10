@@ -31,22 +31,21 @@ const SilhouetteBackground: React.FC = () => {
       alpha: number;
     }[] = [];
     
-    for (let i = 0; i < 30; i++) {
-      const gray = Math.floor(Math.random() * 20) + 230; // Light gray particles
+    for (let i = 0; i < 50; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         size: Math.random() * 1.5 + 0.5,
-        speedX: (Math.random() - 0.5) * 0.05,
-        speedY: (Math.random() - 0.5) * 0.05,
-        alpha: Math.random() * 0.2 + 0.1
+        speedX: (Math.random() - 0.5) * 0.1,
+        speedY: (Math.random() - 0.5) * 0.1,
+        alpha: Math.random() * 0.12 + 0.03
       });
     }
     
     // Animation loop
     const animate = () => {
-      // Create light gray background
-      ctx.fillStyle = '#e5e5e5';
+      // Create very light background
+      ctx.fillStyle = '#f9f9f9';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       
       // Update and draw particles
@@ -57,8 +56,8 @@ const SilhouetteBackground: React.FC = () => {
         
         // Change direction randomly
         if (Math.random() < 0.01) {
-          particle.speedX = (Math.random() - 0.5) * 0.05;
-          particle.speedY = (Math.random() - 0.5) * 0.05;
+          particle.speedX = (Math.random() - 0.5) * 0.1;
+          particle.speedY = (Math.random() - 0.5) * 0.1;
         }
         
         // Ensure particles stay in bounds with wrapping
@@ -70,7 +69,7 @@ const SilhouetteBackground: React.FC = () => {
         // Draw particle
         ctx.beginPath();
         ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(180, 180, 180, ${particle.alpha})`;
+        ctx.fillStyle = `rgba(100, 100, 100, ${particle.alpha})`;
         ctx.fill();
       }
       
@@ -92,19 +91,12 @@ const SilhouetteBackground: React.FC = () => {
         className="absolute inset-0 z-[-1]"
       />
       
-      {/* Human silhouette */}
-      <div className="absolute bottom-0 w-full flex justify-center">
-        <div className="relative w-full max-w-sm h-[40vh]">
+      {/* Very subtle silhouette at bottom - almost invisible */}
+      <div className="absolute bottom-0 w-full flex justify-center opacity-[0.03]">
+        <div className="relative w-full max-w-sm h-[20vh]">
           <div className="absolute bottom-0 w-full h-full">
             <svg viewBox="0 0 100 100" className="absolute bottom-0 w-full h-full">
-              <defs>
-                <mask id="silhouetteMask">
-                  <rect width="100" height="100" fill="white" />
-                  <path d="M50,30 C55,10 45,10 50,30 Q55,50 50,60 Q45,50 50,30 Z" fill="black"/>
-                  <path d="M40,100 L60,100 L55,60 Q50,50 45,60 L40,100 Z" fill="black"/>
-                </mask>
-              </defs>
-              <rect width="100" height="100" fill="black" mask="url(#silhouetteMask)" />
+              <path d="M0,100 L100,100 L100,60 C80,50 70,65 50,55 C30,45 20,60 0,50 L0,100 Z" fill="black" />
             </svg>
           </div>
         </div>
