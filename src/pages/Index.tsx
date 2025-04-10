@@ -1,12 +1,23 @@
-// Update this page (the content is just a fallback if you fail to update the page)
 
-const Index = () => {
+import React from "react";
+import SilhouetteBackground from "@/components/SilhouetteBackground";
+import OrbitingIcons from "@/components/OrbitingIcons";
+import CenterElement from "@/components/CenterElement";
+
+const Index: React.FC = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4">Welcome to Your Blank App</h1>
-        <p className="text-xl text-gray-600">Start building your amazing project here!</p>
-      </div>
+    <div className="relative h-screen w-full overflow-hidden bg-garden-gradient">
+      <div className="absolute inset-0 bg-garden-accent/5 backdrop-blur-[1px]" />
+      
+      {/* Background gradient orbs */}
+      <div className="absolute top-20 left-20 w-64 h-64 rounded-full bg-garden-purple/20 blur-3xl" />
+      <div className="absolute top-40 right-20 w-48 h-48 rounded-full bg-garden-blue/20 blur-3xl" />
+      <div className="absolute bottom-20 left-1/4 w-72 h-72 rounded-full bg-garden-green/20 blur-3xl" />
+      
+      {/* Main components */}
+      <OrbitingIcons radius={180} />
+      <CenterElement />
+      <SilhouetteBackground />
     </div>
   );
 };
