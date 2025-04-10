@@ -32,28 +32,28 @@ const SilhouetteBackground: React.FC = () => {
       alpha: number;
     }[] = [];
     
-    for (let i = 0; i < 100; i++) {
-      // Create varied particles for nebula effect
-      const purples = ['rgba(139, 92, 246, ', 'rgba(167, 139, 250, ', 'rgba(196, 181, 253, '];
-      const blues = ['rgba(147, 197, 253, ', 'rgba(96, 165, 250, '];
+    for (let i = 0; i < 60; i++) {
+      // Create subtle particles
+      const grays = ['rgba(220, 220, 225, ', 'rgba(200, 200, 210, ', 'rgba(180, 180, 190, '];
+      const purples = ['rgba(139, 92, 246, ', 'rgba(167, 139, 250, '];
       
-      const colorPool = [...purples, ...blues];
+      const colorPool = [...grays, ...purples];
       const color = colorPool[Math.floor(Math.random() * colorPool.length)];
       
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
         size: Math.random() * 2 + 0.5,
-        speedX: (Math.random() - 0.5) * 0.2,
-        speedY: (Math.random() - 0.5) * 0.2,
+        speedX: (Math.random() - 0.5) * 0.1,
+        speedY: (Math.random() - 0.5) * 0.1,
         color: color,
-        alpha: Math.random() * 0.5 + 0.1
+        alpha: Math.random() * 0.3 + 0.05
       });
     }
     
     // Animation loop
     const animate = () => {
-      // Create subtle gradient background
+      // Create subtle background
       ctx.clearRect(0, 0, canvas.width, canvas.height);
       
       // Update and draw particles
@@ -64,8 +64,8 @@ const SilhouetteBackground: React.FC = () => {
         
         // Change direction randomly
         if (Math.random() < 0.01) {
-          particle.speedX = (Math.random() - 0.5) * 0.2;
-          particle.speedY = (Math.random() - 0.5) * 0.2;
+          particle.speedX = (Math.random() - 0.5) * 0.1;
+          particle.speedY = (Math.random() - 0.5) * 0.1;
         }
         
         // Ensure particles stay in bounds with wrapping
@@ -95,7 +95,7 @@ const SilhouetteBackground: React.FC = () => {
   }, []);
 
   return (
-    <div className="absolute bottom-0 w-full flex justify-center overflow-hidden">
+    <div className="absolute bottom-0 w-full flex justify-center overflow-hidden z-0">
       {/* Particle canvas background */}
       <canvas 
         ref={particleCanvasRef} 
@@ -104,38 +104,24 @@ const SilhouetteBackground: React.FC = () => {
       
       {/* Animated gradient overlays */}
       <div className="absolute inset-0 bg-gradient-radial from-garden-purple/5 to-transparent z-[-1] animate-pulse-gentle" />
-      <div className="absolute inset-0 bg-gradient-conic from-garden-blue/10 via-transparent to-garden-purple/10 z-[-1] animate-rotate-slow" />
       
-      {/* Fallback color background if image isn't available */}
-      <div className="absolute bottom-0 w-full h-48 bg-gradient-to-t from-garden-green/30 to-transparent" />
-      
-      {/* Main silhouette with holographic effect */}
-      <div className="relative h-[40vh] md:h-[50vh] w-full max-w-4xl silhouette-layer group">
-        <img 
-          src="/silhouette.png" 
-          alt="Garden Silhouette" 
-          className="h-full w-full object-contain object-bottom transition-all"
-          onError={(e) => {
-            const target = e.target as HTMLImageElement;
-            target.onerror = null;
-            target.style.display = 'none';
-          }}
-        />
-        
-        {/* Holographic portal effect */}
-        <div className="absolute inset-0 flex items-end justify-center overflow-hidden">
-          <div className="w-full h-[90%] bg-gradient-to-t from-garden-purple/20 via-garden-blue/10 to-transparent rounded-t-full backdrop-blur-[2px] animate-pulse-gentle"></div>
-        </div>
-        
-        {/* Edge glow effect */}
-        <div className="absolute inset-0 flex items-end justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-1000">
-          <div className="w-[95%] h-[85%] border-t-2 border-l-2 border-r-2 border-purple-300/30 rounded-t-full blur-[2px] animate-pulse-gentle"></div>
+      {/* Human silhouette */}
+      <div className="absolute bottom-0 w-full flex justify-center">
+        <div className="relative w-full max-w-sm h-[40vh]">
+          <div className="absolute bottom-0 w-full h-full bg-black">
+            <svg viewBox="0 0 100 100" className="absolute bottom-0 w-full h-full">
+              <defs>
+                <mask id="silhouetteMask">
+                  <rect width="100" height="100" fill="white" />
+                  <path d="M50,30 C55,10 45,10 50,30 Q55,50 50,60 Q45,50 50,30 Z" fill="black"/>
+                  <path d="M40,100 L60,100 L55,60 Q50,50 45,60 L40,100 Z" fill="black"/>
+                </mask>
+              </defs>
+              <rect width="100" height="100" fill="black" mask="url(#silhouetteMask)" />
+            </svg>
+          </div>
         </div>
       </div>
-      
-      {/* Light effects */}
-      <div className="absolute bottom-0 left-0 w-32 h-48 bg-garden-purple/10 blur-3xl rounded-full animate-pulse-gentle"></div>
-      <div className="absolute bottom-10 right-10 w-24 h-24 bg-garden-blue/10 blur-3xl rounded-full animate-pulse-gentle" style={{ animationDelay: '1s' }}></div>
     </div>
   );
 };

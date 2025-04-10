@@ -4,12 +4,16 @@ import React from "react";
 interface CenterElementProps {
   title?: string;
   subtitle?: string;
+  hidden?: boolean;
 }
 
 const CenterElement: React.FC<CenterElementProps> = ({ 
   title = "Jardim Digital", 
-  subtitle = "Um espaço tranquilo para contemplação"
+  subtitle = "Um espaço tranquilo para contemplação",
+  hidden = true
 }) => {
+  if (hidden) return null;
+  
   return (
     <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
       <div className="text-center z-10 px-6">
