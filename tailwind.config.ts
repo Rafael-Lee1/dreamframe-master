@@ -68,7 +68,10 @@ export default {
 					'accent': '#8B5CF6',
 					'green': '#6EE7B7',
 					'blue': '#93C5FD',
-					'purple': '#C4B5FD'
+					'purple': '#C4B5FD',
+					'neon': '#A855F7',
+					'dark': '#1A1033',
+					'cyber': '#0D1A3A'
 				}
 			},
 			borderRadius: {
@@ -96,6 +99,28 @@ export default {
 				'rotate-slow': {
 					'0%': { transform: 'rotate(0deg)' },
 					'100%': { transform: 'rotate(360deg)' }
+				},
+				'ripple': {
+					'0%': { transform: 'scale(1)', opacity: '1' },
+					'100%': { transform: 'scale(1.7)', opacity: '0' }
+				},
+				'ripple-delayed': {
+					'0%': { transform: 'scale(1)', opacity: '0' },
+					'20%': { opacity: '1' },
+					'100%': { transform: 'scale(2)', opacity: '0' }
+				},
+				'explosion': {
+					'0%': { transform: 'scale(0.5)', opacity: '0.8' },
+					'100%': { transform: 'scale(2)', opacity: '0' }
+				},
+				'fade-up': {
+					'0%': { transform: 'translateY(10px) translateX(-50%)', opacity: '0' },
+					'100%': { transform: 'translateY(0) translateX(-50%)', opacity: '1' }
+				},
+				'pulse-fast': {
+					'0%': { filter: 'brightness(1)' },
+					'50%': { filter: 'brightness(1.5)' },
+					'100%': { filter: 'brightness(1)' }
 				}
 			},
 			animation: {
@@ -103,11 +128,18 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'float': 'float 6s ease-in-out infinite',
 				'pulse-gentle': 'pulse-gentle 4s ease-in-out infinite',
-				'rotate-slow': 'rotate-slow 20s linear infinite'
+				'rotate-slow': 'rotate-slow 20s linear infinite',
+				'ripple': 'ripple 1.5s ease-out infinite',
+				'ripple-delayed': 'ripple-delayed 1.5s ease-out 0.5s infinite',
+				'explosion': 'explosion 0.8s ease-out forwards',
+				'fade-up': 'fade-up 0.3s ease-out forwards',
+				'pulse-fast': 'pulse-fast 0.4s ease-in-out 2'
 			},
 			backgroundImage: {
 				'garden-gradient': 'linear-gradient(to bottom, #E5DEFF, #F2FCE2)',
-				'glow-purple': 'radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, rgba(139, 92, 246, 0) 70%)'
+				'glow-purple': 'radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, rgba(139, 92, 246, 0) 70%)',
+				'cyber-gradient': 'linear-gradient(to bottom, #1A1033, #0D1A3A)',
+				'aurora-gradient': 'linear-gradient(to right, #A855F7, #6EE7B7, #93C5FD)'
 			}
 		}
 	},

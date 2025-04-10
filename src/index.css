@@ -92,13 +92,117 @@
   body {
     @apply bg-background text-foreground;
     font-family: 'Inter', system-ui, sans-serif;
+    overflow: hidden;
+  }
+  
+  /* Hide scrollbar but allow scrolling for orbit speed control */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Neo-futuristic text styling */
+  .neo-text {
+    text-shadow: 0 0 5px rgba(139, 92, 246, 0.5);
+    @apply tracking-wider transition-all duration-500;
   }
 }
 
+/* Core element styles */
 .icon-glow {
   filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.6));
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
 }
 
 .silhouette-layer {
   filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+}
+
+/* Connection lines */
+.connection-line {
+  transition: opacity 0.5s ease, stroke-width 0.5s ease;
+}
+
+/* Advanced animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes pulse-gentle {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.8; }
+}
+
+@keyframes rotate-slow {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes ripple {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.7); opacity: 0; }
+}
+
+@keyframes ripple-delayed {
+  0% { transform: scale(1); opacity: 0; }
+  20% { opacity: 1; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+@keyframes explosion {
+  0% { transform: scale(0.5); opacity: 0.8; }
+  100% { transform: scale(2); opacity: 0; }
+}
+
+@keyframes fade-up {
+  0% { transform: translateY(10px) translateX(-50%); opacity: 0; }
+  100% { transform: translateY(0) translateX(-50%); opacity: 1; }
+}
+
+@keyframes pulse-fast {
+  0% { filter: brightness(1); }
+  50% { filter: brightness(1.5); }
+  100% { filter: brightness(1); }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-pulse-gentle {
+  animation: pulse-gentle 4s ease-in-out infinite;
+}
+
+.animate-rotate-slow {
+  animation: rotate-slow 20s linear infinite;
+}
+
+.animate-ripple {
+  animation: ripple 1.5s ease-out infinite;
+}
+
+.animate-ripple-delayed {
+  animation: ripple-delayed 1.5s ease-out 0.5s infinite;
+}
+
+.animate-explosion {
+  animation: explosion 0.8s ease-out forwards;
+}
+
+.animate-fade-up {
+  animation: fade-up 0.3s ease-out forwards;
+}
+
+.animate-pulse-fast {
+  animation: pulse-fast 0.4s ease-in-out 2;
+}
+
+/* Gradient backgrounds */
+.bg-gradient-radial {
+  background: radial-gradient(var(--tw-gradient-stops));
+}
+
+.bg-gradient-conic {
+  background: conic-gradient(var(--tw-gradient-stops));
 }
