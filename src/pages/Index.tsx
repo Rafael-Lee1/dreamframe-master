@@ -19,7 +19,17 @@ const Index: React.FC = () => {
       <div className="absolute inset-0 backdrop-blur-[1px]" />
       
       {/* Header */}
-      <DreamHeader />
+      <header className="absolute top-0 left-0 w-full p-6 z-20">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          <div className="flex items-center">
+            <span className="text-xl font-medium text-[#111111]">Dream Machine</span>
+          </div>
+          <div className="flex items-center space-x-6">
+            <a href="#" className="text-sm text-[#333333] hover:text-black transition-colors">Join waitlist</a>
+            <a href="#" className="text-sm text-[#333333] hover:text-black transition-colors">Log in</a>
+          </div>
+        </div>
+      </header>
       
       {/* Main content */}
       <main className="relative w-full h-full z-10 flex flex-col justify-center items-center">
@@ -39,12 +49,15 @@ const Index: React.FC = () => {
           </div>
           
           <div className="mt-12 px-4 md:mt-16">
-            <div className="rounded-2xl overflow-hidden w-full max-w-4xl mx-auto shadow-lg border border-gray-100">
+            <div className="relative rounded-2xl overflow-hidden w-full max-w-4xl mx-auto shadow-lg border border-gray-100">
               <img 
                 src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5" 
                 alt="Dream Machine Example" 
                 className="w-full h-auto"
               />
+              <div className="absolute bottom-4 left-4 text-xs text-white bg-black/50 px-2 py-1 rounded-md">
+                Generated with Dream Machine
+              </div>
             </div>
           </div>
         </div>

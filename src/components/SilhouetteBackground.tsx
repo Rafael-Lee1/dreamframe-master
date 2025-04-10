@@ -31,14 +31,14 @@ const SilhouetteBackground: React.FC = () => {
       alpha: number;
     }[] = [];
     
-    for (let i = 0; i < 50; i++) {
+    for (let i = 0; i < 80; i++) {
       particles.push({
         x: Math.random() * canvas.width,
         y: Math.random() * canvas.height,
-        size: Math.random() * 1.5 + 0.5,
-        speedX: (Math.random() - 0.5) * 0.1,
-        speedY: (Math.random() - 0.5) * 0.1,
-        alpha: Math.random() * 0.12 + 0.03
+        size: Math.random() * 1.5 + 0.3,
+        speedX: (Math.random() - 0.5) * 0.08,
+        speedY: (Math.random() - 0.5) * 0.08,
+        alpha: Math.random() * 0.08 + 0.02
       });
     }
     
@@ -56,8 +56,8 @@ const SilhouetteBackground: React.FC = () => {
         
         // Change direction randomly
         if (Math.random() < 0.01) {
-          particle.speedX = (Math.random() - 0.5) * 0.1;
-          particle.speedY = (Math.random() - 0.5) * 0.1;
+          particle.speedX = (Math.random() - 0.5) * 0.08;
+          particle.speedY = (Math.random() - 0.5) * 0.08;
         }
         
         // Ensure particles stay in bounds with wrapping
@@ -91,12 +91,12 @@ const SilhouetteBackground: React.FC = () => {
         className="absolute inset-0 z-[-1]"
       />
       
-      {/* Very subtle silhouette at bottom - almost invisible */}
-      <div className="absolute bottom-0 w-full flex justify-center opacity-[0.03]">
-        <div className="relative w-full max-w-sm h-[20vh]">
+      {/* Very subtle silhouette at bottom */}
+      <div className="absolute bottom-0 w-full flex justify-center opacity-[0.02]">
+        <div className="relative w-full max-w-6xl h-[20vh]">
           <div className="absolute bottom-0 w-full h-full">
-            <svg viewBox="0 0 100 100" className="absolute bottom-0 w-full h-full">
-              <path d="M0,100 L100,100 L100,60 C80,50 70,65 50,55 C30,45 20,60 0,50 L0,100 Z" fill="black" />
+            <svg viewBox="0 0 100 30" className="absolute bottom-0 w-full h-full">
+              <path d="M0,30 L100,30 L100,15 C80,10 70,18 50,12 C30,6 20,16 0,10 L0,30 Z" fill="black" />
             </svg>
           </div>
         </div>

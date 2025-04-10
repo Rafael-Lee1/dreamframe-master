@@ -37,7 +37,7 @@ const OrbitingIcons: React.FC<OrbitingIconProps> = ({ radius = 150 }) => {
 
     // Orbit animation with very slow, subtle movement
     const interval = setInterval(() => {
-      setAngle((prev) => prev + 0.002);
+      setAngle((prev) => prev + 0.0015);
     }, 16);
     
     return () => {
@@ -49,15 +49,15 @@ const OrbitingIcons: React.FC<OrbitingIconProps> = ({ radius = 150 }) => {
     <div className="absolute inset-0 pointer-events-none">
       <div ref={orbitRef} className="relative w-full h-full max-w-screen-lg mx-auto">
         {/* Connection lines (very subtle) */}
-        <svg className="absolute inset-0 w-full h-full opacity-[0.03]">
+        <svg className="absolute inset-0 w-full h-full opacity-[0.02]">
           {(useEmojis ? fallbackIcons : icons).map((_, index) => {
             const nextIndex = (index + 1) % icons.length;
             const theta1 = angle + (index * (2 * Math.PI / icons.length));
             const theta2 = angle + (nextIndex * (2 * Math.PI / icons.length));
             const x1 = adjustedRadius * Math.cos(theta1);
-            const y1 = adjustedRadius * Math.sin(theta1) * 0.3;
+            const y1 = adjustedRadius * Math.sin(theta1) * 0.25; // Make more elliptical
             const x2 = adjustedRadius * Math.cos(theta2);
-            const y2 = adjustedRadius * Math.sin(theta2) * 0.3;
+            const y2 = adjustedRadius * Math.sin(theta2) * 0.25; // Make more elliptical
             
             return (
               <line
@@ -77,14 +77,14 @@ const OrbitingIcons: React.FC<OrbitingIconProps> = ({ radius = 150 }) => {
         {/* Orbiting elements */}
         {(useEmojis ? fallbackIcons : icons).map((icon, index) => {
           const theta = angle + (index * (2 * Math.PI / icons.length));
-          // Use a slightly elliptical orbit
+          // Use a significantly flattened elliptical orbit - almost horizontal
           const x = adjustedRadius * Math.cos(theta);
-          const y = adjustedRadius * Math.sin(theta) * 0.3; // Flatten the circle to make it more elliptical
+          const y = adjustedRadius * Math.sin(theta) * 0.25; // Flatten the circle to make it more elliptical
           
           return useEmojis ? (
             <div
               key={`icon-${index}`}
-              className="absolute text-xl transform -translate-x-1/2 -translate-y-1/2 opacity-60 transition-all duration-300"
+              className="absolute text-lg transform -translate-x-1/2 -translate-y-1/2 opacity-40 transition-all duration-300"
               style={{ 
                 left: `calc(50% + ${x}px)`, 
                 top: `calc(50% + ${y}px)`,
@@ -104,9 +104,9 @@ const OrbitingIcons: React.FC<OrbitingIconProps> = ({ radius = 150 }) => {
               <img
                 src={icon}
                 alt={`Element ${index + 1}`}
-                className="w-5 h-5 transform opacity-60"
+                className="w-4 h-4 transform opacity-40"
                 style={{
-                  filter: 'brightness(0) opacity(0.6)'
+                  filter: 'brightness(0) opacity(0.4)'
                 }}
               />
             </div>
