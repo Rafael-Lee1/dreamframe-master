@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import SilhouetteBackground from "@/components/SilhouetteBackground";
 import OrbitingIcons from "@/components/OrbitingIcons";
-import DreamHeader from "@/components/DreamHeader";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 
