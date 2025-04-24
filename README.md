@@ -29,3 +29,4 @@ Please make sure to manually add these scripts to your package.json file.
 - AI-powered video generation
 - Text-to-video transformation
 - Realistic visual outputs
+

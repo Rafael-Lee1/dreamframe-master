@@ -1,22 +1,68 @@
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 export default function App() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
   useEffect(() => {
-    // Initialize any scripts that need to run after component mounts
+    // Initialize GSAP animations and other scripts after component mounts
     const script = document.createElement('script');
     script.innerHTML = `
       // This ensures any initialization code runs after the DOM is fully loaded
       document.addEventListener('DOMContentLoaded', function() {
         console.log('DreamFrame application initialized');
+        
+        // Initialize Splitting.js for text animations
+        if (window.Splitting) {
+          Splitting();
+        }
       });
     `;
     document.body.appendChild(script);
     
+    // Initialize video playback
+    if (videoRef.current) {
+      videoRef.current.play().catch(err => {
+        console.error("Video playback failed:", err);
+      });
+    }
+    
     return () => {
-      document.body.removeChild(script);
+      if (script.parentNode) {
+        document.body.removeChild(script);
+      }
     };
   }, []);
+
+  // Handle persona selection
+  const handlePersonaClick = (index: number) => {
+    // Remove active class from all items
+    document.querySelectorAll('.hero-switcher .list-item .item').forEach(item => {
+      item.classList.remove('active');
+    });
+    
+    // Add active class to selected item
+    const selectedItem = document.querySelector(`.hero-switcher .list-item .item[data-media-persona="${index}"]`);
+    if (selectedItem) {
+      selectedItem.classList.add('active');
+    }
+    
+    // Update background items
+    document.querySelectorAll('.hero-wrapper__bg .bg-item').forEach(item => {
+      item.classList.remove('active');
+    });
+    const matchingBg = document.querySelector(`.hero-wrapper__bg .bg-item[data-media-persona="${index}"]`);
+    if (matchingBg) {
+      matchingBg.classList.add('active');
+    }
+    
+    // Update gradient color
+    const itemColor = `--${index}-color`;
+    const heroGradient = document.querySelector('.hero-gradient');
+    if (heroGradient) {
+      (heroGradient as HTMLElement).style.backgroundColor = `var(${itemColor})`;
+    }
+  };
 
   return (
     <div className="app">
@@ -51,7 +97,7 @@ export default function App() {
                 ))}
               </div>
               <div className="hero-wrapper__video">
-                <video muted loop playsInline>
+                <video ref={videoRef} muted loop playsInline>
                   <source src="/assets/video/hero.mp4" type="video/mp4" />
                 </video>
               </div>
@@ -81,6 +127,7 @@ export default function App() {
                     className={`item ${num === 1 ? 'active' : ''}`} 
                     data-media-persona={num}
                     data-state={num}
+                    onClick={() => handlePersonaClick(num)}
                   >
                     <img src={`/assets/img/p${num}.png`} alt={`Persona ${num}`} />
                     <p>Persona {num}</p>
