@@ -12,4 +12,3 @@ vite.on('error', (err) => {
   console.error('Failed to start Vite server:', err);
   process.exit(1);
 });
-
