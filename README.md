@@ -1,73 +1,40 @@
-# Welcome to your Lovable project
+# DreamFrame
 
-## Project info
+**DreamFrame** é uma ferramenta inovadora que utiliza inteligência artificial para transformar descrições textuais ou imagens estáticas em vídeos curtos e realistas. Desenvolvida com base nos modelos avançados Ray2 e Photon da Luma Labs, a plataforma permite criar vídeos de alta qualidade com movimentos naturais, física precisa e consistência visual, tudo a partir de simples prompts.
 
-**URL**: https://lovable.dev/projects/cd8a07f9-eb13-435a-954f-5ef247a0959d
+## 🚀 Funcionalidades
 
-## How can I edit this code?
+- **Geração de Vídeos a Partir de Texto ou Imagem**: Crie vídeos realistas com base em descrições textuais ou imagens estáticas.
+- **Movimentos Naturais e Consistência Visual**: Utilize os modelos Ray2 e Photon para garantir movimentos fluidos e consistentes ao longo do vídeo.
+- **Interface Intuitiva**: Plataforma fácil de usar, acessível via web e aplicativo iOS.
+- **Edição e Extensão de Vídeos**: Possibilidade de editar vídeos existentes, estendê-los ou criar loops, proporcionando flexibilidade na produção de conteúdo.
 
-There are several ways of editing your application.
+## ⚙️ Tecnologias Utilizadas
 
-**Use Lovable**
+- **Ray2 e Photon**: Modelos de IA da Luma Labs para geração de vídeos realistas.
+- **React**: Biblioteca JavaScript para construção da interface de usuário.
+- **Vite**: Ferramenta de build para desenvolvimento rápido e eficiente.
+- **Tailwind CSS**: Framework para estilização da interface de forma moderna e responsiva.
+- **Supabase**: Backend como serviço para autenticação e armazenamento de dados.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/cd8a07f9-eb13-435a-954f-5ef247a0959d) and start prompting.
+## 📦 Como Usar
 
-Changes made via Lovable will be committed automatically to this repo.
+1. Clone este repositório:
+   ```bash
+   git clone https://github.com/seu-usuario/dreamframe.git
+   cd dreamframe
 
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+Instale as dependências:
+```bash
+npm install
+```
+Inicie o servidor de desenvolvimento:
+```bash
 npm run dev
 ```
+Acesse a aplicação em: 
+```bash
+http://localhost:3000
+```
 
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/cd8a07f9-eb13-435a-954f-5ef247a0959d) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes it is!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+ 
