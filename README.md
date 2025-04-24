@@ -26,4 +26,3 @@ This project uses:
 - Vite for development and building
 - GSAP for animations
 - Tailwind CSS for styling
-
