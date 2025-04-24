@@ -20,6 +20,7 @@
     "sass": "^1.86.0"
   },
   "dependencies": {
+    "@types/node": "^22.15.0",
     "test-gulp": "file:"
   }
 }
