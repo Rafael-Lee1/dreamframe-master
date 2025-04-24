@@ -2,8 +2,11 @@
   "name": "test-gulp",
   "version": "1.0.0",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+"scripts": {
+  "dev": "vite",
+  "build": "tsc && vite build",
+  "build:dev": "vite build --mode development",
+  "preview": "vite preview"
   },
   "keywords": [],
   "author": "",
