@@ -7,19 +7,29 @@
     <title>DreamFrame</title>
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./assets/main/css/style.min.css">
+    <link rel="stylesheet" href="./assets/libs/splitting.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   </head>
   <body>
     <div id="root"></div>
+    
+    <!-- Load core libraries first -->
     <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
-    <script type="module" src="/src/main.tsx"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.0.22/lenis.min.js" integrity="sha512-m2UiOlVjQ3RQxKt0Hz99n9c2J6J89Z4Wq6JEu5jzstOy9f9Z9EQXQtg1KcvCp7cUQWJFtK+9nq9j4eJ3E3EQg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
     <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- GSAP animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Draggable.min.js"></script>
+    
+    <!-- Load our React app -->
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Initialize animations after DOM is fully loaded and React has rendered -->
+    <script src="/src/scripts/animation-initializer.js"></script>
     <script type="module" src="./assets/main/js/script.min.js"></script>
     <script type="module" src="./assets/main/js/animtion-process.min.js"></script>
   </body>

@@ -5,33 +5,20 @@ export default function App() {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
-    // Initialize GSAP animations and other scripts after component mounts
-    const script = document.createElement('script');
-    script.innerHTML = `
-      // This ensures any initialization code runs after the DOM is fully loaded
-      document.addEventListener('DOMContentLoaded', function() {
-        console.log('DreamFrame application initialized');
-        
-        // Initialize Splitting.js for text animations
-        if (window.Splitting) {
-          Splitting();
-        }
-      });
-    `;
-    document.body.appendChild(script);
+    // Ensure Splitting is initialized after the app is mounted
+    if (window.Splitting) {
+      window.Splitting();
+    }
     
-    // Initialize video playback
+    // Initialize video playback if available
     if (videoRef.current) {
       videoRef.current.play().catch(err => {
         console.error("Video playback failed:", err);
       });
     }
     
-    return () => {
-      if (script.parentNode) {
-        document.body.removeChild(script);
-      }
-    };
+    // Let the console know our React app has loaded
+    console.log('DreamFrame React application initialized');
   }, []);
 
   // Handle persona selection
@@ -136,6 +123,27 @@ export default function App() {
               </div>
             </div>
             <div className="hero-gradient"></div>
+          </div>
+        </section>
+        
+        {/* Process section for animation-process.min.js */}
+        <section className="process">
+          <div className="process__front">
+            <div className="both">
+              <div className="button-discover"></div>
+            </div>
+          </div>
+          <div className="process__back"></div>
+          <div className="process__front--content"></div>
+          <div className="process__items">
+            {[1, 2, 3, 4, 5, 6].map(num => (
+              <div key={num} className="process__item" data-index={num}>
+                <div className="process__item-content">
+                  <h3>Step {num}</h3>
+                  <p>Process description {num}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
       </main>
