@@ -13,9 +13,10 @@
   <body>
     <div id="root"></div>
     
-    <!-- Load core libraries first -->
-    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
+    <!-- Load jQuery first since many scripts depend on it -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Load animation libraries -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lenis/1.0.22/lenis.min.js" integrity="sha512-m2UiOlVjQ3RQxKt0Hz99n9c2J6J89Z4Wq6JEu5jzstOy9f9Z9EQXQtg1KcvCp7cUQWJFtK+9nq9j4eJ3E3EQg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://unpkg.com/splitting/dist/splitting.min.js"></script>
     <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
@@ -27,6 +28,9 @@
     
     <!-- Load our React app -->
     <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- gpt engineer script -->
+    <script src="https://cdn.gpteng.co/gptengineer.js" type="module"></script>
     
     <!-- Animation scripts load after React is initialized -->
     <script type="module" src="./assets/main/js/script.min.js"></script>
